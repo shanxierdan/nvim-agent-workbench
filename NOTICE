@@ -1,0 +1,6 @@
+Nvim Agent Workbench
+Copyright 2026 shanxierdan
+
+This project is based on the LazyVim starter template and integrates LazyVim,
+Sidekick.nvim, Snacks.nvim, Catppuccin, tmux, and the OpenAI Codex CLI. Those
+projects remain subject to their respective licenses and trademarks.
