@@ -13,6 +13,12 @@
 
 </div>
 
+<p align="center">
+  <img src="assets/overview.png" alt="Nvim Agent Workbench with the file explorer, dashboard, and persistent Codex panel" width="100%">
+</p>
+
+<p align="center"><sub>One workspace for project navigation, editing, and a persistent Codex conversation.</sub></p>
+
 Nvim Agent Workbench turns LazyVim into a focused IDE with a persistent Codex panel. It keeps one agent session per project, reconnects through tmux, restores saved chats when the process is gone, and sends files, selections, diagnostics, and review prompts without leaving Neovim.
 
 ## Why this exists

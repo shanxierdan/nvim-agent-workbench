@@ -13,6 +13,12 @@
 
 </div>
 
+<p align="center">
+  <img src="assets/overview.png" alt="同时展示文件浏览器、工作台和持久化 Codex 面板的 Nvim Agent Workbench" width="100%">
+</p>
+
+<p align="center"><sub>在同一个工作区中完成项目浏览、代码编辑和可持续恢复的 Codex 对话。</sub></p>
+
 Nvim Agent Workbench 将 LazyVim、Sidekick、tmux 和 Codex CLI 组合成一套完整工作流：每个项目拥有独立的 Agent 会话，退出 Neovim 后进程仍可保留；进程结束后可以恢复历史对话；文件、选区、诊断和审查上下文都能直接发送给 Codex。
 
 ## 解决的问题
