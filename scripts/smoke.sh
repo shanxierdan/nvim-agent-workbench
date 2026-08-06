@@ -21,3 +21,4 @@ git -C "$ROOT" archive HEAD | tar -x -C "$XDG_CONFIG_HOME/$NVIM_APPNAME"
 
 nvim --headless -i NONE "+Lazy! sync" +qa!
 nvim --headless -i NONE "+lua assert(vim.fn.exists('#codex_editor_window#WinEnter') == 1)" +qa!
+nvim --headless -u NONE -i NONE "+lua dofile('$ROOT/tests/ai_toggle.lua')" +qa!

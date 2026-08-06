@@ -60,7 +60,7 @@ local function show_codex(state)
 end
 
 local function toggle_codex_state(state)
-  local current, attached = show_codex(state)
+  local current, attached = require("sidekick.cli.state").attach(state)
   if not current.terminal then
     return
   end
@@ -70,6 +70,22 @@ local function toggle_codex_state(state)
   if current.terminal:is_open() then
     current.terminal:focus()
   end
+end
+
+local function restore_codex_input()
+  local win = vim.api.nvim_get_current_win()
+  local session_id = vim.w[win].sidekick_session_id
+  if not session_id then
+    return
+  end
+
+  vim.schedule(function()
+    local terminal = require("sidekick.cli.terminal").get(session_id)
+    if terminal and terminal.tool.name == "codex" and terminal:is_running() and terminal:is_focused() then
+      terminal.normal_mode = false
+      vim.cmd.startinsert()
+    end
+  end)
 end
 
 local function select_codex_session()
@@ -160,10 +176,16 @@ return {
   {
     "folke/sidekick.nvim",
     init = function()
+      local group = vim.api.nvim_create_augroup("codex_editor_window", { clear = true })
       vim.api.nvim_create_autocmd("WinEnter", {
-        group = vim.api.nvim_create_augroup("codex_editor_window", { clear = true }),
+        group = group,
         callback = protect_codex_window,
         desc = "Keep a file window beside the Codex terminal",
+      })
+      vim.api.nvim_create_autocmd("WinEnter", {
+        group = group,
+        callback = restore_codex_input,
+        desc = "Restore input mode when focusing Codex",
       })
     end,
     opts = {
@@ -182,6 +204,9 @@ return {
           backend = "tmux",
           enabled = true,
           create = "terminal",
+        },
+        tools = {
+          codex = { native_scroll = true },
         },
         prompts = {
           diagnostics = t("diagnostics_prompt"),

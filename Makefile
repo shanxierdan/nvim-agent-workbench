@@ -4,10 +4,10 @@ doctor:
 	bash scripts/doctor.sh
 
 format:
-	stylua lua init.lua
+	stylua lua tests init.lua
 
 lint:
-	stylua --check lua init.lua
+	stylua --check lua tests init.lua
 	shellcheck install.sh scripts/*.sh
 
 smoke:
